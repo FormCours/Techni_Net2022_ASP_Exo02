@@ -5,6 +5,18 @@
     bool onDiscount = !(Model.Discount is null);
 }
 
+@* Injecter du CSS dans le layout (Necessite un RenderSection « CSS » ) *@
+@section CSS {
+    <link rel="stylesheet" href="~/css/product.css"/>
+}
+
+@* Injecter du JS dans le layout (Necessite un RenderSection « Scripts » ) *@
+@section Scripts {
+    <script>
+        console.log("Detail du produit @Model.Name");
+    </script>
+}
+
 <h1>Detail de @Model.Name</h1>
 
 <dl>
@@ -16,10 +28,10 @@
     
     <dt>@Html.DisplayNameFor(m => m.Price)</dt>
     <dd>
-        <span class="@(onDiscount ? "price-discount" : "")">@Html.DisplayFor(m => m.Price)</span>
+        <span class="@(onDiscount ? "price-through" : "")">@Html.DisplayFor(m => m.Price)</span>
 
         @if(onDiscount) {
-            <span>@Html.DisplayFor(m => m.DiscountPrice)</span>
+            <span class="price-discount">@Html.DisplayFor(m => m.DiscountPrice)</span>
         }
     </dd>
    
@@ -29,3 +41,6 @@
         <dd>@Html.DisplayFor(m => m.Discount) %</dd>
     }
 </dl>
+
+
+

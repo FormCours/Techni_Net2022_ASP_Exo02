@@ -1,0 +1,42 @@
+﻿@model ProductForm
+
+@{
+    ViewData["Title"] = "Ajouter un produit";
+}
+
+<h1>Ajouter un produit</h1> 
+
+<form method="post">
+    
+    <div class="mb-2">
+        <label class="form-label">Nom</label>
+        <input class="form-control" type="text" name="Name" value="@Model.Name" />
+    </div>
+    
+    <div class="mb-2">
+        <label class="form-label">Ref</label>
+        <input class="form-control" type="text" name="Reference" value="@Model.Reference"/>
+    </div>
+    
+    <div class="mb-2">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" name="Desc">@Model.Desc</textarea> 
+    </div>
+    
+    <div class="mb-2">
+        <label class="form-label">Prix</label>
+        <input class="form-control" type="text" name="Price" value="@Model.Price" />
+    </div>
+    
+    <div>
+        <label class="form-label">Promo</label>
+        <input class="form-control" type="text" name="Discount" value="@Model.Discount"/>
+    </div>
+
+    <div>
+        <button class="btn btn-primary" type="submit">Ajouter</button>
+        <button class="btn btn-secondary" type="reset">Effacer</button>
+    </div>
+
+    @Html.ValidationSummary()
+</form>

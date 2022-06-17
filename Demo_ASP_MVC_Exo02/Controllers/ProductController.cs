@@ -26,14 +26,39 @@ namespace Demo_ASP_MVC_Exo02.Controllers
 
         public IActionResult Add()
         {
-            return View();
+            return View(new ProductForm());
         }
 
-        //[HttpPost]
-        //public IActionResult Add()
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public IActionResult Add(ProductForm productForm)
+        {
+            if(FakeDB.ProductData.GetAll()
+                   .Any(p => p.Reference.ToLower() == productForm.Reference.ToLower()))
+            {
+                ModelState.AddModelError(
+                    nameof(productForm.Reference),
+                    "La référence est déjà présente !"
+                );
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return View(productForm);
+            }
+
+            Product product = new Product
+            {
+                Name = productForm.Name,
+                Desc = productForm.Desc,
+                Price = (decimal)productForm.Price,
+                Discount = productForm.Discount,
+                Reference = productForm.Reference
+            };
+
+            FakeDB.ProductData.Add(product);
+
+            return RedirectToAction(nameof(Index));
+        }
 
         public IActionResult Delete([FromRoute] int id)
         {
