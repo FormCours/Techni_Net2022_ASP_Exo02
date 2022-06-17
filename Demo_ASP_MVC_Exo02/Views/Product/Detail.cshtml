@@ -8,25 +8,24 @@
 <h1>Detail de @Model.Name</h1>
 
 <dl>
-    <dt>Ref</dt>
-    <dd>@Model.Reference</dd>
-
-    <dt>Desc</dt>
-    <dd>@Model.Desc</dd>
+    <dt>@Html.DisplayNameFor(m => m.Reference)</dt>
+    <dd>@Html.DisplayFor(m => m.Reference)</dd>
     
-    <dt>Prix</dt>
+    <dt>@Html.DisplayNameFor(m => m.Desc)</dt>
+    <dd>@Html.DisplayFor(m => m.Desc)</dd>
+    
+    <dt>@Html.DisplayNameFor(m => m.Price)</dt>
     <dd>
-        <span class="@(onDiscount ? "price-discount" : "")">@Model.Price</span>
+        <span class="@(onDiscount ? "price-discount" : "")">@Html.DisplayFor(m => m.Price)</span>
 
         @if(onDiscount) {
-            decimal priceDiscount = (decimal)(Model.Price - (Model.Price * Model.Discount) / 100m);
-            <span>@priceDiscount</span>
+            <span>@Html.DisplayFor(m => m.DiscountPrice)</span>
         }
     </dd>
    
     @if (onDiscount)
     {
-        <dt>Promo</dt>
-        <dd>@Model.Discount %</dd>
+        <dt>@Html.DisplayNameFor(m => m.Discount)</dt>
+        <dd>@Html.DisplayFor(m => m.Discount) %</dd>
     }
 </dl>
