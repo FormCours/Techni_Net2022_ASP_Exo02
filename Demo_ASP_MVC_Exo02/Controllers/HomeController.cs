@@ -28,5 +28,13 @@ namespace Demo_ASP_MVC_Exo02.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [NonAction]
+        public string Prive()
+        {
+            Console.WriteLine("Cette méthode est prive :o");
+
+            return "Boum";
+        }
     }
 }
